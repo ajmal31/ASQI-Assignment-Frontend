@@ -23,13 +23,11 @@ const EmployeeManagement = () => {
   //add new employee
   const postEmployeeData = async (data) => {
     const response = await axios.post(`${BASE_URL}employee`, data);
-    // setAllEmployeeDetails([...allEmployeeDetails, response?.data]);
     fetchEmployeeDetails()
   };
 
   const postDepartmentData = async (data) => {
     const response = await axios.post(`${BASE_URL}department`, data);
-    // setAllDepartments([...allEmployeeDetails, response?.data]);
     fetchAllDepartments();
   };
 
@@ -40,7 +38,7 @@ const EmployeeManagement = () => {
 
   return (
     <>
-      <div className="bg-red-300 h-screen p-10 flex flex-col gap-10">
+      <div className="bg-red-300  p-10 flex flex-col gap-10">
         <div className="flex flex-row w-full h-1/2">
           <AddDepartment postDepartmentData={postDepartmentData} />
           <AddEmployee
