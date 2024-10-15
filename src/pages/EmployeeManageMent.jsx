@@ -12,20 +12,21 @@ const EmployeeManagement = () => {
   //Fetch all employee detaila along with department
   const fetchEmployeeDetails = async () => {
     const response = await axios.get(`${BASE_URL}employee`);
-    setAllEmployeeDetails(response?.data);
+    setAllEmployeeDetails(response?.data?.data);
   };
   // Get all departments
   const fetchAllDepartments = async () => {
     const response = await axios.get(`${BASE_URL}department`);
-    setAllDepartments(response.data);
+    setAllDepartments(response?.data?.data);
   };
 
-  //add new employee
+  //Add new employee
   const postEmployeeData = async (data) => {
     const response = await axios.post(`${BASE_URL}employee`, data);
     fetchEmployeeDetails()
   };
-
+  
+  // Creating new department 
   const postDepartmentData = async (data) => {
     const response = await axios.post(`${BASE_URL}department`, data);
     fetchAllDepartments();
@@ -38,7 +39,7 @@ const EmployeeManagement = () => {
 
   return (
     <>
-      <div className="bg-red-300  p-10 flex flex-col gap-10">
+      <div className="bg-red-300 h-screen  p-10 flex flex-col gap-10">
         <div className="flex flex-row w-full h-1/2">
           <AddDepartment postDepartmentData={postDepartmentData} />
           <AddEmployee
@@ -47,7 +48,7 @@ const EmployeeManagement = () => {
           />
         </div>
 
-        <div className="h-1/2 border border-black w-5/6">
+        <div className="h-1/2 border border-black w-5/6"  >
           <EmployeesTable allEmployeeDetails={allEmployeeDetails} />
         </div>
       </div>

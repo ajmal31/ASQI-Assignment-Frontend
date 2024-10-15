@@ -6,12 +6,13 @@ const AddEmployee = ({postData,allDepartments}) => {
     address: "",
   });
   const [selectedValue, setSelectedValue] = useState("");
-
+  
+  // Handle Employee details
   const handleEmployeeDetails = (e) => {
     setEmployeeDetails({ ...employeeDetails, [e.target.name]: e.target.value });
   };
 
-
+  // Selected department
   const handleChange = (e) => {
     setSelectedValue(e.target.value);
   };
