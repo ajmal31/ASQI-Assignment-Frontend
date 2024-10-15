@@ -1,19 +1,6 @@
-import axios from "axios";
-import { BASE_URL } from "../utils/const";
-import { useEffect, useState } from "react";
+const EmployeesTable = ({allEmployeeDetails}) => {
 
-const EmployeesTable = () => {
-  const [employeeDetails, setEmployeeDetails] = useState([]);
-  
-  const fetchData = async () => {
-    const response = await axios.get(`${BASE_URL}employee`);
-    setEmployeeDetails(response?.data);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+  if(allEmployeeDetails.length===0)return <h1>Loading</h1>
   return (
     <>
       <table className="table-auto border border-black w-full">
@@ -26,8 +13,8 @@ const EmployeesTable = () => {
           </tr>
         </thead>
         <tbody>
-          {employeeDetails.map((val) => (
-            <tr>
+          {allEmployeeDetails.map((val) => (
+            <tr key={val?._id} >
               <td className="border border-black">{val?.name}</td>
               <td className="border border-black">{val?.address}</td>
               <td className="border border-black">{val?.department?.name}</td>
